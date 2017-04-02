@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <style>
+        #box{
+            position:absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+
+
+
+//        pc端   手机端没有效果
+        var box = $('#box').get(0);
+        box.onmousedown = function(e){
+            var ev = e || event;
+            var minuendLeft = ev.clientX - box.offsetLeft;
+            var minuendTop = ev.clientY - box.offsetTop;
+//            minuendLeft 左侧被减数
+//            minuendTop  顶部被减数
+            document.onmousemove = function(e){
+                var ev = e || event;
+                box.style.left = ev.clientX -minuendLeft + 'px';
+                box.style.top = ev.clientY -minuendTop + 'px';
+                console.log(box.offsetLeft+','+box.offsetTop);
+            }
+            document.onmouseup =function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+            return false;
+        }
+//
+//是为了阻止冒泡
+//，return false是事件属性阻止的冒泡的方法;通过addEventListener事件监听
+//的就需要stopPropagation()
+
+    </script>
+</body>
+</html>

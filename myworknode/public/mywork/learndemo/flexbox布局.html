@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        #item-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction:column;
+            background-color: hsl(34,88%,90%);
+        }
+        .square {
+            width: 200px;
+            height: 200px;
+            background-color: hsl(50,88%,50%);
+        }
+        .circle {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            background-color: hsl(22,88%,50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="item-container">
+        <div class="circle"></div>
+        <div class="square"></div>
+        <div class="circle"></div>
+    </div>
+</body>
+</html>

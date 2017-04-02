@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>classList</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        .aa{
+            width: 100px;
+            height: 100px;
+            background: black;
+        }
+        .bb{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .b{
+            opacity: .1;
+            filter: opacity(.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv" class="aa"></div>
+    <script>
+        var myDiv = document.getElementById('myDiv');
+        myDiv.onclick = function(){
+//            this.className = 'bb';
+
+            /*添加*/
+            this.classList.add("b");
+            /*删除*/
+
+            this.classList.remove('b');
+            /*查看*/
+
+            this.classList.add("b");
+            alert(this.classList.contains('b'));
+            /*换*/
+            this.classList.toggle('b');
+        }
+    </script>
+</body>
+</html>

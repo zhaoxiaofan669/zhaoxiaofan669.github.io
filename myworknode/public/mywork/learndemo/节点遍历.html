@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点遍历</title>
+</head>
+<body>
+    <script>
+        function forEach( nodeList, callback ) {
+            if(Array.prototype.forEach){
+                // ie9+
+                Array.prototype.forEach.call( nodeList, callback );
+            }else {
+                // ie8
+                for (var i = 0; i < nodeList.length; i++){
+                    callback(nodeList[i], i);
+                }
+            }
+        }
+
+        forEach(document.querySelectorAll(selector),function(el, i){
+
+        })
+    </script>
+</body>
+</html>

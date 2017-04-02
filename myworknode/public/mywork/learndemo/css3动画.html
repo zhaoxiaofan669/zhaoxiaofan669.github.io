@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3动画</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        #div{
+            width: 100px;
+            height: 100px;
+            background: yellowgreen;
+            position: relative;
+
+            /*animation-name: myfirst;*/
+            /*animation-duration: 5s;*/
+            /*animation-timing-function: linear;*/
+            /*animation-delay: 2s;*/
+            /*animation-iteration-count: infinite;*/
+            /*animation-direction: alternate;*/
+            /*animation-play-state: running;*/
+            /*!* Firefox: *!*/
+            /*-moz-animation-name: myfirst;*/
+            /*-moz-animation-duration: 5s;*/
+            /*-moz-animation-timing-function: linear;*/
+            /*-moz-animation-delay: 2s;*/
+            /*-moz-animation-iteration-count: infinite;*/
+            /*-moz-animation-direction: alternate;*/
+            /*-moz-animation-play-state: running;*/
+            /*!* Safari 和 Chrome: *!*/
+            /*-webkit-animation-name: myfirst;*/
+            /*-webkit-animation-duration: 5s;*/
+            /*-webkit-animation-timing-function: linear;*/
+            /*-webkit-animation-delay: 2s;*/
+            /*-webkit-animation-iteration-count: infinite;*/
+            /*-webkit-animation-direction: alternate;*/
+            /*-webkit-animation-play-state: running;*/
+            /*!* Opera: *!*/
+            /*-o-animation-name: myfirst;*/
+            /*-o-animation-duration: 5s;*/
+            /*-o-animation-timing-function: linear;*/
+            /*-o-animation-delay: 2s;*/
+            /*-o-animation-iteration-count: infinite;*/
+            /*-o-animation-direction: alternate;*/
+            /*-o-animation-play-state: running;*/
+
+     /*简便写法*/
+            animation: myfirst 5s linear 2s infinite alternate;
+            /* Firefox: */
+            -moz-animation: myfirst 5s linear 2s infinite alternate;
+            /* Safari 和 Chrome: */
+            -webkit-animation: myfirst 5s linear 2s infinite alternate;
+            /* Opera: */
+            -o-animation: myfirst 5s linear 2s infinite alternate;
+        }
+
+        @keyframes myfirst{
+            /*from{background: red;}*/
+            /*to{background: yellow}*/
+
+            /*0%   {background: red;}*/
+            /*25%  {background: yellow;}*/
+            /*50%  {background: blue;}*/
+            /*100% {background: green;}*/
+
+
+            0%   {background: red; left:0px; top:0px;}
+            25%  {background: yellow; left:600px; top:0px;}
+            50%  {background: blue; left:600px; top:600px;}
+            75%  {background: green; left:0px; top:600px;}
+            100% {background: red; left:0px; top:0px;}
+        }
+        /*FireFox*/
+        @-moz-keyframes myfirst {
+            0%   {background: red; left:0px; top:0px;}
+            25%  {background: yellow; left:600px; top:0px;}
+            50%  {background: blue; left:600px; top:600px;}
+            75%  {background: green; left:0px; top:600px;}
+            100% {background: red; left:0px; top:0px;}
+        }
+        /*Safari和Chrome*/
+        @-webkit-keyframes myfirst {
+            0%   {background: red; left:0px; top:0px;}
+            25%  {background: yellow; left:600px; top:0px;}
+            50%  {background: blue; left:600px; top:600px;}
+            75%  {background: green; left:0px; top:600px;}
+            100% {background: red; left:0px; top:0px;}
+        }
+        /*Opera*/
+        @-o-keyframes myfirst {
+            0%   {background: red; left:0px; top:0px;}
+            25%  {background: yellow; left:600px; top:0px;}
+            50%  {background: blue; left:600px; top:600px;}
+            75%  {background: green; left:0px; top:600px;}
+            100% {background: red; left:0px; top:0px;}
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>css3动画</legend>
+        <p>
+            如需在 CSS3 中创建动画，您需要学习 @keyframes 规则。
+            @keyframes 规则用于创建动画。在 @keyframes 中规定某项 CSS 样式，
+            就能创建由当前样式逐渐改为新样式的动画效果。
+        </p>
+
+        <em>
+            Internet Explorer 10、Firefox 以及 Opera 支持 @keyframes 规则和 animation 属性。
+            Chrome 和 Safari 需要前缀 -webkit-。
+            注释：Internet Explorer 9，以及更早的版本，不支持 @keyframe 规则或 animation 属性。
+        </em>
+     </fieldset>
+    <div id="div"></div>
+</body>
+</html>

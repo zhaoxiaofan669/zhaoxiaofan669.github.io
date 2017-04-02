@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jquery鼠标点击按钮图标旋转弹出图标菜单旋转动画</title>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <style>
+        @charset "utf-8";
+        * {
+            margin:0;
+            padding:0;
+            list-style-type:none;
+        }
+        a, img {
+            border:0;
+        }
+        body {
+            font:12px/180% Arial, Helvetica, sans-serif, "新宋体";
+        }
+        .PathMenu {
+            position:absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 60px;
+            height: 60px;
+        }
+        .PathInner {
+            position:relative;
+            width: 60px;
+            height: 60px;
+        }
+        .PathInner .PathItem {
+            position:absolute;
+            left: 0px;
+            bottom: 0px;
+        }
+        .PathInner a {/* position:absolute; */
+            display:block;/* overflow:hidden; */
+            background-position:center;
+            background-repeat:no-repeat;
+            z-index:999;
+        }
+        .PathInner a .item, .rotate {
+            width:100%;
+            height:100%;
+            background-position:center;
+            background-repeat:no-repeat;
+            display:block;
+            overflow:hidden;
+            text-align:center;
+            vertical-align:middle;
+            position:absolute;
+        }
+        .PathInner .PathMain {
+            z-index:1000;
+            position:absolute;
+            display:block;/* overflow:hidden; */
+            background-position:center;
+            background-repeat:no-repeat;
+            bottom:0;
+            left:0;
+        }
+        .PathInner .PathMain .Tmain {
+            background-image: url(images/bg-2x.png);
+            width: 60px;
+            height: 60px;
+        }
+        .PathInner .PathMain .Tmain .rotate {
+            background-image: url(images/icon-2x.png);
+            -moz-transform: rotate(0deg);
+            position:absolute;
+            bottom:0;
+            left:0;
+        }
+        .PathInner .cover {
+            width:100%;
+            height:100%;
+            display:block;
+            background:url(images/bg-hl-2x.png) center no-repeat;
+            cursor: pointer;
+            filter:alpha(opacity=0)\0;
+            opacity:0;
+            -webkit-transition:opacity .2s ease-out;
+            -moz-transition:opacity .2s ease-out;
+            -ms-transition:opacity .2s ease-out;
+            -o-transition:opacity .2s ease-out;
+        }
+        .PathInner .cover:hover {
+            opacity:0.2;
+            *filter:alpha(opacity=20);
+            filter:alpha(opacity=20)\0;
+        }
+        .PathItem .link {
+            position:absolute;
+            bottom:0;
+            left:0;
+            width: 60px;
+            height: 60px;
+            background-image: url(images/bg-item-2x.png);
+        }
+        .PathItem .link .item {
+            bottom:0;
+            left:0;
+        }
+        .metaicondetail {
+            background:#fff;
+            color:#fff;
+            border-radius:6px;
+            border:1px #333 solid;
+            min-width:100px;
+            max-width:300px;
+            overflow:hidden;
+            text-align: center;
+            position:absolute;
+            display:none;
+            top:-115px;
+            left:-22px;
+        }
+        .metaicondetail .inner {
+            border:2px #fff solid;
+            border-radius:6px;
+            background:#272727;
+            font-size:14px;
+            padding:5px;
+        }
+        .metaicondetail span {
+            font-family:candara, arail;
+            font-size:18px;
+        }
+        .metaicondetail s {
+            border-color:#333 transparent transparent;
+            border-style: solid dashed dashed;
+            border-width:5px;
+            clear: both;
+            display: inline-block;
+            font-size: 0;
+            height: 0;
+            margin-left:3px;
+            overflow: hidden;
+            position: absolute;
+            right:50%;
+            top:44px;
+            width:0;
+        }
+    </style>
+</head>
+<body>
+<div class="PathInner" id="PathMenu" style="position: fixed;right: 0;bottom: 10%;">
+    <div class="PathMain">
+        <div class="Tmain" onclick="PathRun();">
+            <div class="rotate"><span class="cover"></span></div>
+        </div>
+    </div>
+    <div class="PathItem">
+        <a class="link" href="#" title="更多图片">
+            <span class="item" style="background-image:url(images/moment_icn_pic.png);"></span>
+        </a>
+    </div>
+    <div class="PathItem">
+        <a class="link" href="#" title="详细参数">
+
+            <span class="item" style="background-image:url(images/moment_icn_info.png);"></span>
+
+        </a>
+    </div>
+    <div class="PathItem">
+        <a class="link" href="#" title="玛百莉官方专卖店地址">
+            <span class="item" style="background-image: url(images/moment_icn_address.png);"></span>
+        </a>
+    </div>
+    <div class="PathItem">
+        <a class="link" href="#" title="详细参数">
+
+            <span class="item" style="background-image:url(images/moment_icn_info.png);"></span>
+
+        </a>
+    </div>
+</div>
+<script>
+    var PathStatus 	= 0;
+    var angle 		= Math.PI/((4-1)*2);
+    var mainButton 	= [
+        {'bg':'../images/bg-2x.png','css':'','cover':'../images/icon-2x.png','html':'<span class="cover"></span>'},
+        {'bg':'','css':'','cover':'','html':'','angle':-405,'speed':200}
+    ];
+    var Radius 		= 100;		//小图出来的半径
+    var Offset 		= 40;		//小图出来后的偏移量
+    var Path 		= 4;		//出现方式，1：左上，2:左下，3：右上，4：右下
+    var OutSpeed 	= 80;		//小图出现的速度
+    var OutIncr 	= 50;		//小图出来的旋转
+    var OffsetSpeed = 200;		//小图出来的旋转速度
+    var InSpeed 	= 480;		//小图进去的速度
+    var InIncr 		= -80;		//小图进去的旋转
+    function PathRun(){
+        var PathMenu = $('#PathMenu');
+        var PathItems = PathMenu.children('.PathItem').slice(0,4);
+        if(PathStatus == 0){
+            var Count = PathItems.size();
+            PathItems.each(function(SP){
+                var ID = $(this).index();
+                if (ID == 1) {
+                    var X 	= Radius;
+                    var Y 	= 0;
+                    var X1 	= X + Offset;
+                    var Y1 	= Y;
+                }else if (ID == Count){
+                    var X 	= 0;
+                    var Y 	= Radius;
+                    var X1 	= X;
+                    var Y1 	= Y + Offset;
+                }else{
+                    var X 	= Math.cos(angle * (ID - 1)) * Radius;
+                    var Y 	= Math.sin(angle * (ID - 1)) * Radius;
+                    var X1	= X + Offset;
+                    var Y1 	= Y + Offset;
+                }
+
+                if(Path==2){
+                    Y	= -Y;
+                    Y1	= -Y1;
+                }else if(Path==3){
+                    X	= -X;
+                    Y	= -Y;
+                    X1	= -X1;
+                    Y1	= -Y1;
+                }else if(Path==4){
+                    X	= -X;
+                    X1	= -X1;
+                }
+
+                $(this).children().children().animate({rotate:720},600);
+
+                $(this).animate({left:X1,bottom:Y1},OutSpeed+SP*OutIncr,function(){
+                    $(this).animate({left:X,bottom:Y},OffsetSpeed);
+                });
+            });
+
+            if(mainButton[1]['angle']){
+                $(PathMenu.children('.PathMain').find('.rotate')).animate({rotate:mainButton[1]['angle']},mainButton[1]['speed']);
+            }
+            if(mainButton[1]['bg']!='') $(this).children().css('background-image','url('+mainButton[1]['bg']+')')
+            if(mainButton[1]['css']!='') $(this).children().css(mainButton[1]['css']);
+            if(mainButton[1]['cover']!='') $(this).children().children().css('background-image','url('+mainButton[1]['cover']+')');
+            if(mainButton[1]['html']!='') $(this).children().html(mainButton[1]['html']);
+
+            PathStatus = 1;
+        }else if(PathStatus == 1){
+            PathItems.each(function(SP){
+                if(parseInt($(this).css('left'))==0){
+                    X1 = 0;
+                }else{
+                    if(Path <=2){
+                        X1 = parseInt($(this).css('left')) + Offset;
+                    }else if(Path >=3){
+                        X1 = parseInt($(this).css('left')) - Offset;
+                    }
+                }
+
+                if(parseInt($(this).css('bottom'))==0){
+                    Y1 = 0;
+                }else{
+                    if(Path==3 || Path==2){
+                        Y1 = parseInt($(this).css('bottom')) - Offset;
+                    }else if(Path ==1 || Path == 4){
+                        Y1 = parseInt($(this).css('bottom')) + Offset;
+                    }
+                }
+                $(this).children().children().animate({rotate:0},600);
+                $(this).animate({left:X1,bottom:Y1},OffsetSpeed,function(){
+                    $(this).animate({left:0,bottom:0},InSpeed+SP*InIncr);
+
+                });
+            });
+            if(mainButton[1]['angle']){
+                $(PathMenu.children('.PathMain').find('.rotate')).animate({rotate:0},mainButton[1]['speed']);
+            }
+            if(mainButton[0]['bg']!='') $(this).children().css('background-image','url('+mainButton[0]['bg']+')')
+            if(mainButton[0]['css']!='') $(this).children().css(mainButton[0]['css']);
+            if(mainButton[0]['cover']!='') $(this).children().children().css('background-image','url('+mainButton[0]['cover']+')');
+            if(mainButton[0]['html']!='') $(this).children().html(mainButton[0]['html']);
+
+            PathStatus = 0;
+        }
+    }
+
+</script>
+</body>
+</html>
+

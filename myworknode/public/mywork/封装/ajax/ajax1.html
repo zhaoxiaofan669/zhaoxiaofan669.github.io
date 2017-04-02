@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * @param option {object}  ajax的参数*/
+
+    function ajax(option){
+        var setting={
+            url:'',
+            method:'',
+            data:'',
+            async:true,
+            success:null,
+            error:null,
+            timeout:10000,
+            header:null,
+            dataType:'json'
+        }
+
+        for(var p in option)
+        {
+            setting[p]=option[p]
+        }
+        var requestdata='';
+        if(typeof setting.data=='object'){
+             var arr=[];
+            for(var p in setting.data){
+                arr.push(p+'='+setting.data[p]);
+            }
+            requestdata=arr.join('&');
+        }
+        else{
+            requestdata=setting.data;
+        }
+        var xhr;
+        if(XMLHttpRequest){
+            xhr=new XMLHttpRequest();
+        }
+        else{
+            xhr=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if(setting.method.toLocaleLowerCase()=='get'){
+            xhr.open(setting.method,setting.url+'?'+requestdata,setting.async);
+            xhr.send(requestdata);
+        }
+        else{
+            xhr.open(setting.method,setting.url,setting.async);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            xhr.send(requestdata);
+        }
+
+        xhr.timeout=setting.timeout;
+        xhr.ontimeout=function(){
+            typeof setting.error=='function'&&setting.error('timeout');
+        }
+        xhr.onerror=function(){
+            typeof setting.error=='function'&&setting.error(xhr.response);
+        }
+        if(setting.async){
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                    typeof setting.success=='function'&&setting.success(xhr.response);
+                }
+            }
+        }
+
+    }
+
+
+
+//    /*
+//     * 处理请求结果
+//     * */
+//    function doResult(){
+//        if(xhr.readyState==4&&xhr.status==200&&typeof setting.success=='function'){
+//            switch (setting.dataType){
+//                case 'json':
+//                    setting.success(JSON.parse(xhr.response));
+//                    break;
+//                default:
+//                    setting.success(xhr.response);
+//            }
+//
+//        }
+//    }
+//
+//    /*
+//     * 添加请求头
+//     * */
+//    function addHeader(){
+//        if(typeof  setting.header =='object'){
+//            for(var p in setting.header){
+//                xhr.setRequestHeader(p,setting.header[p]);
+//            }
+//
+//        }
+//    }
+//    }
+
+
+    ajax1({
+        url:'',
+        method:'get',
+        data:'',
+        timeout:2000,
+        header:{'apikey':'2051db0736e8664dc407b405d46e04d0'},
+        success:function(data){
+            console.log(data);
+        },
+        error:function(data){
+            console.log(data);
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+1.<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+这是个是IE8的专用标记,用来指定IE8浏览器去模拟某个特定版本的IE浏览器的渲染方式(比如人见人烦的IE6)，以此来解决部分兼容问题，例如模拟IE7的具体方式如下：
+
+< meta http-equiv = "X-UA-Compatible" content = "IE=EmulateIE7" />
+
+但令我好奇的是，此处这个标记后面竟然出现了chrome这样的值，难道IE也可以模拟chrome了?
+
+迅速搜索了一下，才明白原来不是微软增强了IE，而是谷歌做了个外挂：Google Chrome Frame(谷歌内嵌浏览器框架GCF)。
+这个插件可以让用户的IE浏览器外不变，但用户在浏览网页时，实际上使用的是Google Chrome浏览器内核，而且支持IE6、7、8等多个版本的IE浏览器，谷歌这个墙角挖的真给力!
+
+详情请看 http://www.cnblogs.com/lovecode/articles/3377505.html
+2.<meta name="renderer" content="webkit|ie-comp|ie-stand">
+content 的取值为 webkit, ie-comp, ie-stand 之一，区分大小写，分别代表用 webkit 内核，IE 兼容内核，IE 标准内核。
+详情：http://www.jianshu.com/p/484b8241169c
+3.<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+     width:可视区域的宽度，值可为数字或关键词device-width
+     height:同width
+     intial-scale:页面首次被显示是可视区域的缩放级别，取值1.0则页面按实际尺寸显示，无任何缩放
+     maximum-scale=1.0, minimum-scale=1.0;可视区域的缩放级别，
+     maximum-scale用户可将页面放大的程序，1.0将禁止用户放大到实际尺寸之上。
+     user-scalable:是否可对页面进行缩放，no 禁止缩放
+4.<meta http-equiv="Cache-Control" content="no-siteapp" />
+设置这个之后通过手机百度搜索打开网页时,百度会为你的网页进行转码
+
+5.
+让IE低版本浏览器兼容html5元素。
+ <!--[if lt IE 9]>
+    <script type="text/javascript" src="/public/static/uiadmin/lib/html5.js"></script>
+    <script type="text/javascript" src="/public/static/uiadmin/lib/PIE_IE678.js"></script>
+    <![endif]-->
+　自HTML5标准的提出就得到非常多的关注，而作为全球使用用户最多的IE浏览器能够支持HTML5标准也是大家备受关注一个问题，让IE(包括IE6)支持HTML5元素，我们需要在HTML头部添加以下JavaScript，这是一个简单的document.createElement声明，利用条件注释针对IE来调用这个js文件。Opera，FireFox等其他非IE浏览器就会忽视这段代码，也不会存在http请求。
+6
+<!--[if IE 6]>
+<script type="text/javascript" src="Lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('.pngfix,.icon');</script>
+<![endif]--> 
+.DD_belatedPNG_0.0.8a-min.js
+
+解决IE6png透明，请使用注释方式的方式加载，只有IE6的浏览器才会加载，避免增加其他浏览器的资源冗余。
+
+<!--[if IE 6]>
+<script type="text/javascript" src="Lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('.pngfix,.icon');</script>
+<![endif]--> 
+经常见有人把这一块写成
+<script>DD_belatedPNG.fix('*');</script>
+或者
+<script>DD_belatedPNG.fix('div,p,h1,h2……');</script>
+
+详情：http://www.h-ui.net/Hui-overview.shtml
+
+7.正则：
+        decmal: "^([+-]?)\\d*\\.\\d+$", //浮点数
+        decmal1: "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$", //正浮点数
+        decmal2: "^-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*)$", //负浮点数
+        decmal3: "^-?([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0)$", //浮点数
+        decmal4: "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0$", //非负浮点数（正浮点数 + 0）
+        decmal5: "^(-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*))|0?.0+|0$", //非正浮点数（负浮点数 + 0）
+        intege: "^-?[1-9]\\d*$", //整数
+        intege1: "^[1-9]\\d*$", //正整数
+        intege2: "^-[1-9]\\d*$", //负整数
+        num: "^([+-]?)\\d*\\.?\\d+$", //数字
+        num1: "^[1-9]\\d*|0$", //正数（正整数 + 0）
+        num2: "^-[1-9]\\d*|0$", //负数（负整数 + 0）
+        ascii: "^[\\x00-\\xFF]+$", //仅ACSII字符
+        chinese: "^[\\u4e00-\\u9fa5]+$", //仅中文
+        color: "^[a-fA-F0-9]{6}$", //颜色
+        date: "^\\d{4}(\\-|\\/|\.)\\d{1,2}\\1\\d{1,2}$", //日期
+        email: "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$", //邮件
+        idcard: "^[1-9]([0-9]{14}|[0-9]{17})$", //身份证
+        ip4: "^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$", //ip地址
+        letter: "^[A-Za-z]+$", //字母
+        letter_l: "^[a-z]+$", //小写字母
+        letter_u: "^[A-Z]+$", //大写字母
+        mobile: "^0?(13|15|17|18|14)[0-9]{9}$", //手机
+        notempty: "^\\S+$", //非空
+        password: "^.*[A-Za-z0-9\\w_-]+.*$", //密码
+        fullNumber: "^[0-9]+$", //数字
+        picture: "(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$", //图片
+        qq: "^[1-9]*[1-9][0-9]*$", //QQ号码
+        rar: "(.*)\\.(rar|zip|7zip|tgz)$", //压缩文件
+        tel: "^[0-9\-()()]{7,18}$", //电话号码的函数(包括验证国内区号,国际区号,分机号)
+        url: "^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&=]*)?$", //url
+        username: "^[A-Za-z0-9_\\-\\u4e00-\\u9fa5]+$", //户名
+        deptname: "^[A-Za-z0-9_()()\\-\\u4e00-\\u9fa5]+$", //单位名
+        zipcode: "^\\d{6}$", //邮编
+        realname: "^[A-Za-z\\u4e00-\\u9fa5]+$", // 真实姓名
+        companyname: "^[A-Za-z0-9_()()\\-\\u4e00-\\u9fa5]+$",
+        companyaddr: "^[A-Za-z0-9_()()\\#\\-\\u4e00-\\u9fa5]+$",
+        companysite: "^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&#=]*)?$"
+
+8.时间插件
+
+
+
+12.8
+本人驾到
+1.iCheck
+2.validate
+3.messages_zh.min.js
+
+jQuery Validate扩展验证方法
+$(function(){
+    // 判断整数value是否等于0 
+    jQuery.validator.addMethod("isIntEqZero", function(value, element) { 
+         value=parseInt(value);      
+         return this.optional(element) || value==0;       
+    }, "整数必须为0"); 
+      
+    // 判断整数value是否大于0
+    jQuery.validator.addMethod("isIntGtZero", function(value, element) { 
+         value=parseInt(value);      
+         return this.optional(element) || value>0;       
+    }, "整数必须大于0"); 
+      
+    // 判断整数value是否大于或等于0
+    jQuery.validator.addMethod("isIntGteZero", function(value, element) { 
+         value=parseInt(value);      
+         return this.optional(element) || value>=0;       
+    }, "整数必须大于或等于0");   
+    
+    // 判断整数value是否不等于0 
+    jQuery.validator.addMethod("isIntNEqZero", function(value, element) { 
+         value=parseInt(value);      
+         return this.optional(element) || value!=0;       
+    }, "整数必须不等于0");  
+    
+    // 判断整数value是否小于0 
+    jQuery.validator.addMethod("isIntLtZero", function(value, element) { 
+         value=parseInt(value);      
+         return this.optional(element) || value<0;       
+    }, "整数必须小于0");  
+    
+    // 判断整数value是否小于或等于0 
+    jQuery.validator.addMethod("isIntLteZero", function(value, element) { 
+         value=parseInt(value);      
+         return this.optional(element) || value<=0;       
+    }, "整数必须小于或等于0");  
+    
+    // 判断浮点数value是否等于0 
+    jQuery.validator.addMethod("isFloatEqZero", function(value, element) { 
+         value=parseFloat(value);      
+         return this.optional(element) || value==0;       
+    }, "浮点数必须为0"); 
+      
+    // 判断浮点数value是否大于0
+    jQuery.validator.addMethod("isFloatGtZero", function(value, element) { 
+         value=parseFloat(value);      
+         return this.optional(element) || value>0;       
+    }, "浮点数必须大于0"); 
+      
+    // 判断浮点数value是否大于或等于0
+    jQuery.validator.addMethod("isFloatGteZero", function(value, element) { 
+         value=parseFloat(value);      
+         return this.optional(element) || value>=0;       
+    }, "浮点数必须大于或等于0");   
+    
+    // 判断浮点数value是否不等于0 
+    jQuery.validator.addMethod("isFloatNEqZero", function(value, element) { 
+         value=parseFloat(value);      
+         return this.optional(element) || value!=0;       
+    }, "浮点数必须不等于0");  
+    
+    // 判断浮点数value是否小于0 
+    jQuery.validator.addMethod("isFloatLtZero", function(value, element) { 
+         value=parseFloat(value);      
+         return this.optional(element) || value<0;       
+    }, "浮点数必须小于0");  
+    
+    // 判断浮点数value是否小于或等于0 
+    jQuery.validator.addMethod("isFloatLteZero", function(value, element) { 
+         value=parseFloat(value);      
+         return this.optional(element) || value<=0;       
+    }, "浮点数必须小于或等于0");  
+    
+    // 判断浮点型  
+    jQuery.validator.addMethod("isFloat", function(value, element) {       
+         return this.optional(element) || /^[-\+]?\d+(\.\d+)?$/.test(value);       
+    }, "只能包含数字、小数点等字符"); 
+     
+    // 匹配integer
+    jQuery.validator.addMethod("isInteger", function(value, element) {       
+         return this.optional(element) || (/^[-\+]?\d+$/.test(value) && parseInt(value)>=0);       
+    }, "匹配integer");  
+     
+    // 判断数值类型，包括整数和浮点数
+    jQuery.validator.addMethod("isNumber", function(value, element) {       
+         return this.optional(element) || /^[-\+]?\d+$/.test(value) || /^[-\+]?\d+(\.\d+)?$/.test(value);       
+    }, "匹配数值类型，包括整数和浮点数");  
+    
+    // 只能输入[0-9]数字
+    jQuery.validator.addMethod("isDigits", function(value, element) {       
+         return this.optional(element) || /^\d+$/.test(value);       
+    }, "只能输入0-9数字");  
+    
+    // 判断中文字符 
+    jQuery.validator.addMethod("isChinese", function(value, element) {       
+         return this.optional(element) || /^[\u0391-\uFFE5]+$/.test(value);       
+    }, "只能包含中文字符。");   
+ 
+    // 判断英文字符 
+    jQuery.validator.addMethod("isEnglish", function(value, element) {       
+         return this.optional(element) || /^[A-Za-z]+$/.test(value);       
+    }, "只能包含英文字符。");   
+ 
+     // 手机号码验证    
+    jQuery.validator.addMethod("isMobile", function(value, element) {    
+      var length = value.length;    
+      return this.optional(element) || (length == 11 && /^(((13[0-9]{1})|(15[0-35-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(value));    
+    }, "请正确填写您的手机号码。");
+
+    // 电话号码验证    
+    jQuery.validator.addMethod("isPhone", function(value, element) {    
+      var tel = /^(\d{3,4}-?)?\d{7,9}$/g;    
+      return this.optional(element) || (tel.test(value));    
+    }, "请正确填写您的电话号码。");
+
+    // 联系电话(手机/电话皆可)验证   
+    jQuery.validator.addMethod("isTel", function(value,element) {   
+        var length = value.length;   
+        var mobile = /^(((13[0-9]{1})|(15[0-35-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        var tel = /^(\d{3,4}-?)?\d{7,9}$/g;       
+        return this.optional(element) || tel.test(value) || (length==11 && mobile.test(value));   
+    }, "请正确填写您的联系方式"); 
+ 
+     // 匹配qq      
+    jQuery.validator.addMethod("isQq", function(value, element) {       
+         return this.optional(element) || /^[1-9]\d{4,12}$/;       
+    }, "匹配QQ");   
+ 
+     // 邮政编码验证    
+    jQuery.validator.addMethod("isZipCode", function(value, element) {    
+      var zip = /^[0-9]{6}$/;    
+      return this.optional(element) || (zip.test(value));    
+    }, "请正确填写您的邮政编码。");  
+    
+    // 匹配密码，以字母开头，长度在6-12之间，只能包含字符、数字和下划线。      
+    jQuery.validator.addMethod("isPwd", function(value, element) {       
+         return this.optional(element) || /^[a-zA-Z]\\w{6,12}$/.test(value);       
+    }, "以字母开头，长度在6-12之间，只能包含字符、数字和下划线。");  
+    
+    // 身份证号码验证
+    jQuery.validator.addMethod("isIdCardNo", function(value, element) { 
+      //var idCard = /^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/;   
+      return this.optional(element) || isIdCardNo(value);    
+    }, "请输入正确的身份证号码。"); 
+
+    // IP地址验证   
+    jQuery.validator.addMethod("ip", function(value, element) {    
+      return this.optional(element) || /^(([1-9]|([1-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))\.)(([1-9]|([1-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))\.){2}([1-9]|([1-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))$/.test(value);    
+    }, "请填写正确的IP地址。");
+   
+    // 字符验证，只能包含中文、英文、数字、下划线等字符。    
+    jQuery.validator.addMethod("stringCheck", function(value, element) {       
+         return this.optional(element) || /^[a-zA-Z0-9\u4e00-\u9fa5-_]+$/.test(value);       
+    }, "只能包含中文、英文、数字、下划线等字符");   
+   
+    // 匹配english  
+    jQuery.validator.addMethod("isEnglish", function(value, element) {       
+         return this.optional(element) || /^[A-Za-z]+$/.test(value);       
+    }, "匹配english");   
+    
+    // 匹配汉字  
+    jQuery.validator.addMethod("isChinese", function(value, element) {       
+         return this.optional(element) || /^[\u4e00-\u9fa5]+$/.test(value);       
+    }, "匹配汉字");   
+    
+    // 匹配中文(包括汉字和字符) 
+    jQuery.validator.addMethod("isChineseChar", function(value, element) {       
+         return this.optional(element) || /^[\u0391-\uFFE5]+$/.test(value);       
+    }, "匹配中文(包括汉字和字符) "); 
+      
+    // 判断是否为合法字符(a-zA-Z0-9-_)
+    jQuery.validator.addMethod("isRightfulString", function(value, element) {       
+         return this.optional(element) || /^[A-Za-z0-9_-]+$/.test(value);       
+    }, "判断是否为合法字符(a-zA-Z0-9-_)");   
+    
+    // 判断是否包含中英文特殊字符，除英文"-_"字符外
+    jQuery.validator.addMethod("isContainsSpecialChar", function(value, element) {  
+         var reg = RegExp(/[(\ )(\`)(\~)(\!)(\@)(\#)(\$)(\%)(\^)(\&)(\*)(\()(\))(\+)(\=)(\|)(\{)(\})(\')(\:)(\;)(\')(',)(\[)(\])(\.)(\<)(\>)(\/)(\?)(\~)(\！)(\@)(\#)(\￥)(\%)(\…)(\&)(\*)(\（)(\）)(\—)(\+)(\|)(\{)(\})(\【)(\】)(\‘)(\；)(\：)(\”)(\“)(\’)(\。)(\，)(\、)(\？)]+/);   
+         return this.optional(element) || !reg.test(value);       
+    }, "含有中英文特殊字符");
+});
+//身份证号码的验证规则
+function isIdCardNo(num){ 
+　   //if (isNaN(num)) {alert("输入的不是数字！"); return false;} 
+　　 var len = num.length, re; 
+　　 if (len == 15) 
+　　 re = new RegExp(/^(\d{6})()?(\d{2})(\d{2})(\d{2})(\d{2})(\w)$/); 
+　　 else if (len == 18) 
+　　 re = new RegExp(/^(\d{6})()?(\d{4})(\d{2})(\d{2})(\d{3})(\w)$/); 
+　　 else {
+		//alert("输入的数字位数不对。"); 
+		return false;
+	} 
+　　 var a = num.match(re); 
+　　 if (a != null) 
+　　 { 
+　　 if (len==15) 
+　　 { 
+　　 var D = new Date("19"+a[3]+"/"+a[4]+"/"+a[5]); 
+　　 var B = D.getYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5]; 
+　　 } 
+　　 else 
+　　 { 
+　　 var D = new Date(a[3]+"/"+a[4]+"/"+a[5]); 
+　　 var B = D.getFullYear()==a[3]&&(D.getMonth()+1)==a[4]&&D.getDate()==a[5]; 
+　　 } 
+　　 if (!B) {
+		//alert("输入的身份证号 "+ a[0] +" 里出生日期不对。"); 
+		return false;
+	} 
+　　 } 
+　　 if(!re.test(num)){
+		//alert("身份证最后一位只能是数字和字母。");
+		return false;
+	}
+　　 return true; 
+} 
+//车牌号校验
+function isPlateNo(plateNo){
+    var re = /^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$/;
+    if(re.test(plateNo)){
+        return true;
+    }
+    return false;
+}
+4.serialize
+5.layer
+6.laypage
+7.window.parent.location.reload();  重新加载页面
+8.dataTable
+9.attr  val  each  empty  submit()  show  substring  split closest find  prop first() 
+10.WdatePicker
+11bootstrap-modalmanager.js   bootstrap-modal.js
+12.window.name
+13.  ref.code==0
+14.H-ui
+15.H-ui.admin
+16.zTreeStyle.css
+17.jquery.ztree.core-3.5.js
+18.jquery.ztree.excheck-3.5.min.js
+19.eval
+20.$.fn
+21. parent.layer.close(index);
+22. location.replace
+23.webuploader.min.js
+24.  图像上传
+ var uploader = WebUploader.create({
+            pick: {id: '#imglist', multiple: false,innerHTML: '导入'},
+            auto: true,
+            title: '员工信息导入',
+            swf: '/static/uiadmin/lib/webuploader/0.1.5/Uploader.swf',
+            extensions: 'xls,xlsx',
+            mimeTypes: '.xls,.xlsx',
+            server: "{:U('employe/import')}",
+            fileNumLimit: 1,
+        });
+        uploader.on('uploadStart', function () {
+            loadind = layer.load(1, {shade: [0.8, '#393D49']});
+        });
+        uploader.on('uploadError', function (file, reason) {
+            layer.close(loadind);
+            uploader.reset();
+            layer.msg('图片上传错误[' + reason + ']', {icon: 5});
+        });
+        uploader.on('error', function (type) {
+            if (type == 'Q_EXCEED_SIZE_LIMIT') {
+                layer.msg('上传的图片不能超过2MB', {icon: 5});
+            } else if (type == 'Q_EXCEED_NUM_LIMIT') {
+                layer.msg('上传的图片只能上传一张', {icon: 5});
+            } else if (type == 'Q_TYPE_DENIED') {
+                layer.msg('上传的文件类型不对', {icon: 5});
+            }
+            uploader.reset();
+            return false;
+        });
+        uploader.on('uploadSuccess', function (file, data) {
+            layer.close(loadind);
+            if (data.code != '0') {
+                layer.msg(data.msg, {icon: 5});
+                uploader.reset();
+                return false;
+            } else {
+                layer.msg('数据导入成功！', {icon: 1});
+                uploader.reset();
+                location.replace(location.href);
+            }
+        });
+25.WebUploader.create
+26.location.replace
+27.viwerjs   图片查看器
+28.<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+自适应手机
+29.
+Font Awesome  一套绝佳的图标字体库和CSS框架
+http://fontawesome.dashgame.com/
+30.各种html5源码     数字时钟插件
+http://www.codesocang.com/texiao/shijian/6570.html#
+31.radialIndicator.js   jquery  圆形进度条 
+http://ignitersworld.com/lab/radialIndicator.html
+32.cookie
+http://blog.163.com/qingshui1bei@yeah/blog/static/124078678201312231516839/
+33.is()方法  jqeruy中的遍历方法
+34.Modernizr  navitoar.Agent   查看是哪个浏览器
+https://modernizr.com/docs
+35.getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数。
+36.
+http://www.360doc.com/content/14/0923/12/21412_411713803.shtml
+37
+Validform   一行代码搞定表单验证
+https://jqueryvalidation.org/
+38.

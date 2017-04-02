@@ -1,0 +1,226 @@
+1.-webkit-min-device-pixel-ratio : 2（设备像素）
+
+
+
+设备像素为:1.0    (-webkit-min-device-pixel-ratio)
+
+所有non-Retina mac电脑 
+苹果iPhone(第一代) 
+苹果iPhone 3 g 
+苹果iPhone 3 gs 
+苹果iPad(第一代) 
+苹果iPad 2 
+苹果iPad迷你(第一代) 
+宏碁Iconia A500 
+三星Galaxy Tab 10.1 
+三星Galaxy S
+
+
+
+设备像素为:1.3    (-webkit-min-device-pixel-ratio) 
+
+ 
+
+华硕MemoPad高清7 
+谷歌Nexus 7(2012型)
+
+设备像素为:1.4    (-webkit-min-device-pixel-ratio)
+
+ 
+
+诺基亚流光(Lumia)520
+
+ 
+
+设备像素为:1.5    (-webkit-min-device-pixel-ratio)
+
+ 
+
+谷歌Nexus S 
+HTC欲望 
+HTC Desire HD 
+HTC不可思议的年代 
+HTC速度 
+宏达电的感觉 
+Kindle Fire高清 
+三星Galaxy S II 
+索尼平板电脑Xperia Z 
+索尼Xperia U
+
+ 
+
+设备像素为:2.0    (-webkit-min-device-pixel-ratio)
+
+ 
+
+所有mac视网膜显示器 
+苹果iPhone 4 
+苹果iPhone 4 s 
+苹果iPhone 5 
+苹果iPhone 5度 
+苹果iPhone 5 s 
+苹果iPhone 6 
+苹果iPad(第三代) 
+苹果iPad 4 
+苹果iPad的空气 
+苹果iPad迷你(2rd代) 
+HTC一条X 
+谷歌的Galaxy Nexus 
+谷歌Nexus 4 
+谷歌Nexus 7(2013型) 
+谷歌Nexus 10 
+摩托罗拉极限摩托 
+三星Galaxy S三世 
+三星Galaxy注意二世 
+索尼Xperia年代 
+索尼Xperia T
+
+ 
+
+设备像素为:2.6    (-webkit-min-device-pixel-ratio)
+
+ 
+
+诺基亚流光(Lumia)930
+
+设备像素为:3.0    (-webkit-min-device-pixel-ratio)
+
+HTC(M7) 
+HTC的蝴蝶 
+华为荣耀6 
+苹果iPhone 6 + 
+LG G2 
+联系5 
+OnePlus一 
+相对应的人找到7(X9076) 
+三星Galaxy S4 
+三星Galaxy注3 
+三星Galaxy注4 
+索尼Xperia Z 
+小米小米3
+
+响应式布局—设备像素密度测试 (-webkit-min-device-pixel-ratio)
+
+
+对手机分辨率和网页像素的初步认识是，是2倍的差别。
+
+但是让人费解的是为什么还要 1.325 这种数据呢，原来是这么回事：
+
+-webkit-min-device-pixel-ratio的常见值对比（是设备上物理像素和设备独立像素，设备像素比率）
+设备 分辨率 设备像素比率Android LDPI 320×240 0.75 Iphone 3 & Android MDPI 320×480 1 Android HDPI 480×800 1.5 Iphone 4 960×640 2.0
+
+设备像素为:1.0    (-webkit-min-device-pixel-ratio)
+
+所有non-Retina mac电脑 
+苹果iPhone(第一代) 
+苹果iPhone 3 g 
+苹果iPhone 3 gs 
+苹果iPad(第一代) 
+苹果iPad 2 
+苹果iPad迷你(第一代) 
+宏碁Iconia A500 
+三星Galaxy Tab 10.1 
+三星Galaxy S
+
+
+
+设备像素为:1.3    (-webkit-min-device-pixel-ratio) 
+
+ 
+
+华硕MemoPad高清7 
+谷歌Nexus 7(2012型)
+
+设备像素为:1.4    (-webkit-min-device-pixel-ratio)
+
+ 
+
+诺基亚流光(Lumia)520
+
+ 
+
+设备像素为:1.5    (-webkit-min-device-pixel-ratio)
+
+ 
+
+谷歌Nexus S 
+HTC欲望 
+HTC Desire HD 
+HTC不可思议的年代 
+HTC速度 
+宏达电的感觉 
+Kindle Fire高清 
+三星Galaxy S II 
+索尼平板电脑Xperia Z 
+索尼Xperia U
+
+ 
+
+设备像素为:2.0    (-webkit-min-device-pixel-ratio)
+
+ 
+
+所有mac视网膜显示器 
+苹果iPhone 4 
+苹果iPhone 4 s 
+苹果iPhone 5 
+苹果iPhone 5度 
+苹果iPhone 5 s 
+苹果iPhone 6 
+苹果iPad(第三代) 
+苹果iPad 4 
+苹果iPad的空气 
+苹果iPad迷你(2rd代) 
+HTC一条X 
+谷歌的Galaxy Nexus 
+谷歌Nexus 4 
+谷歌Nexus 7(2013型) 
+谷歌Nexus 10 
+摩托罗拉极限摩托 
+三星Galaxy S三世 
+三星Galaxy注意二世 
+索尼Xperia年代 
+索尼Xperia T
+
+ 
+
+设备像素为:2.6    (-webkit-min-device-pixel-ratio)
+
+ 
+
+诺基亚流光(Lumia)930
+
+设备像素为:3.0    (-webkit-min-device-pixel-ratio)
+
+HTC(M7) 
+HTC的蝴蝶 
+华为荣耀6 
+苹果iPhone 6 + 
+LG G2 
+联系5 
+OnePlus一 
+相对应的人找到7(X9076) 
+三星Galaxy S4 
+三星Galaxy注3 
+三星Galaxy注4 
+索尼Xperia Z 
+小米小米3
+
+
+
+
+
+原地址：
+
+《响应式布局设置--@media only screen and  》
+
+http://chaofu200900.blog.163.com/blog/static/110119533201341102618140/
+
+
+
+《Device pixel density tests》
+
+http://bjango.com/articles/min-device-pixel-ratio/
+
+
+2.

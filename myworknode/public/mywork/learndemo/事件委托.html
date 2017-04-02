@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        #fuji >div{
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="fuji">
+        <div id=" oneDiv"></div>
+    </div>
+    <script src="js/jquery-1.7.2.min.js"> </script>
+    <script>
+        var fuji = $('#fuji').get(0);
+        fuji.onclick = function(e){
+            var ev = e || event;
+            var ziTarget = ev.target || ev.srcElement;
+            if(ziTarget.id = "oneDiv"){
+                ziTarget.style.backgroundColor = "red";
+            }
+        };
+
+//        var ev = event || e ;大家都知道这是对鼠标事件的一种兼容性写法。
+//        zitraget，不是js固定的API或者特有的词汇，而是我们将它当作一个变量用于存储目标。
+//        var ziTarget = ev.target || ev.srcElement;这句话就是获取事件源。事件源是谁？
+        // 当然就是父级指定产生事件的孩子。
+//        “ev.srcElement ”［火狐不支持］；“ev.target”［ie不支持］，谷歌都支持所以写成兼容的模式。
+//        event.srcElement
+
+
+//        设置或获取触发事件的对象。
+//        引用对象，这个对象有什么属性，就可以使用。
+//        常用的有：
+//        event.srcElement.TagName     //事件对象的html标记
+//        event.srcElement.innerText   //事件对象的内文本
+//        event.srcElement.value     //表单事件对象的值
+
+
+    </script>
+</body>
+</html>

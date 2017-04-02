@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            position:absolute;   /*必不可少*/
+        left:50%;
+            top:50%;
+        }
+    </style>
+</head>
+<script src="js/jquery-1.7.2.min.js"></script>
+<body>
+<!--微博-->
+<!--<a href="http://service.weibo.com/share/share.php?appkey=&title=&url=&pic=&searchPic=false&style=simple" target="_blank">asdf</a>-->
+
+qq空间等等
+<div id="ckepop">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js" charset="utf-8"></script>
+
+<!--<div id="toRight">右移</div>-->
+<!--<script>-->
+    <!--$(function(){-->
+        <!--$("#toRight").animate({-->
+            <!--left:"-=100px"-->
+        <!--},3000);-->
+        <!--//3000ms,代表在3s内完成该动画-->
+
+    <!--})-->
+<!--</script>-->
+
+
+
+
+<!--复制按钮-->
+<!--<script type="text/javascript">-->
+<!--function copyUrl2() {-->
+<!--var Url2=document.getElementById("biao1");-->
+<!--Url2.select(); // 选择对象-->
+<!--document.execCommand("Copy"); // 执行浏览器复制命令-->
+<!--alert("已复制好，可贴粘。");-->
+<!--}-->
+<!--</script>-->
+<!--<textarea cols="20" rows="10" id="biao1">用户定义的代码区域</textarea>-->
+<!--<input type="button" onClick="copyUrl2()" value="点击复制代码" />-->
+
+<script>
+
+    //        分享到微博
+    var shareToWeibo = function(url, reply, imgsrc , appkey , callback) {
+        callback = callback || function(){}
+        javascript:void((
+                function(s,d,e){
+                    var f='http://v.t.sina.com.cn/share/share.php?'; var p=['url='+e(url),'&title=',e(reply),'&appkey=' + appkey].join('');
+                    if(imgsrc !== false ) {
+                        p += '&pic='+imgsrc;
+                    }
+                    function a(){
+                        if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join(''))){
+                        }
+                    };
+                    if(/Firefox/.test(navigator.userAgent)){
+                        setTimeout(a,0);
+                    }else{
+                        a();
+                    }
+                    callback();
+                }
+        )(screen,document,encodeURIComponent));
+    };
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

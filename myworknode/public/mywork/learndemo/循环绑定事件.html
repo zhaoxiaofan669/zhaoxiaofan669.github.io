@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>循环绑定事件</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <style>
+        ul{
+            width: 100%;
+            height: 400px;
+        }
+        li{
+            width: 100%;
+            height: 80px;
+            background: darkmagenta;
+        }
+        li:nth-of-type(2n){
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+
+        /*结果为click5 start error*/
+        var nodes = document.querySelectorAll('ul li');
+//        for(var i = 0,len = nodes.length;i<len;i++){
+//            nodes[i].addEventListener('click',function(){
+//                alert('click'+ i );
+//            })
+//        }
+        /*结果为click5 end error*/
+
+
+
+
+
+        /*还行的方法 start right*/
+
+//        for(var i = 0,len = nodes.length;i<len;i++){
+//            !function(node,index){
+//               node.addEventListener('click',function(){
+//                   alert('click' + index);
+//               })
+//            }(nodes[i],i);
+//        }
+        /*还行的方法 end right*/
+
+
+
+
+
+        /*让面试官眼睛一亮的方法 start*/
+
+        [].slice.call(nodes).forEach(function(node,index){
+
+            node.addEventListener('click',function(){
+                alert('click'+index);
+            })
+        });
+
+
+        /*让面试官眼睛一亮的方法 end*/
+    </script>
+</body>
+</html>

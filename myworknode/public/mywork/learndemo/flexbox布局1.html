@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>flexbox布局1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        .flex-container {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: wrap;
+            width: 300px;
+
+            background-color: lightgrey;
+        }
+
+        .flex-item {
+            background-color: cornflowerblue;
+            width:31%;
+            height: 100px;
+            margin: 5px 5px 0 0;
+        }
+        .flex-item:nth-child(3n+1){
+            margin-left:5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flex-container">
+    <div class="flex-item">flex item 1</div>
+    <div class="flex-item">flex item 2</div>
+    <div class="flex-item">flex item 3</div>
+    <div class="flex-item">flex item 1</div>
+    <div class="flex-item">flex item 2</div>
+    <div class="flex-item">flex item 3</div>
+    <div class="flex-item">flex item 1</div>
+    <div class="flex-item">flex item 2</div>
+    <div class="flex-item">flex item 3</div>
+    <div class="flex-item">flex item 2</div>
+    <div class="flex-item">flex item 3</div>
+    <div class="flex-item">flex item 1</div>
+    <div class="flex-item">flex item 2</div>
+    <div class="flex-item">flex item 3</div>
+</div>
+
+</body>
+</html>

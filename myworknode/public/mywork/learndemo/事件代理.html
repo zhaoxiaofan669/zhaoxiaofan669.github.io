@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件代理</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        *{
+            cursor:pointer
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<script>
+    var ul = document.querySelector('ul');
+    // 事件代理
+    ul.addEventListener('click', function(event) {
+        if (event.target.tagName.toLowerCase() === 'li') {
+            console.log(event.target.innerHTML)
+        }
+    });
+    //禁止页面元素不被选中//***************************************************
+    if(document.all){
+        document.onselectstart= function(){return false;}; //for ie
+    }else{
+        document.onmousedown= function(){return false;};
+        document.onmouseup= function(){return true;};
+    }
+    document.onselectstart = new Function('event.returnValue=false;');
+
+
+</script>
+</body>
+</html>

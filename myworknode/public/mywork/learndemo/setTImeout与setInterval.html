@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setTimeout与setInterval</title>
+</head>
+<body>
+    <script>
+        /*setTimeout
+        setTimeout只运行一次，
+        也就是说设定的时间到后就触发运行指定代码，运行完后即结束。 */
+//          t = setTimeout(function(){
+//                alert('hello')
+//            },1000);
+//          clearTimeout(t);
+
+
+        /*setInterval   每隔1s在控制台输出‘ hello’
+
+         setInterval创建的定时器可以使用clearInterval取消*/
+
+        var t = setInterval(function(){
+            console.log('hello!')
+        },1000);
+        clearInterval(t);
+    </script>
+</body>
+</html>

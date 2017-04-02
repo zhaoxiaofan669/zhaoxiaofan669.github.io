@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>Javascript Cookie</title>
+</head>
+<body>
+<label for="">
+    <input class="name" type="text" name="name" placeholder="请输入名字">
+    <input class="password" type="password" name="password" placeholder="请输入密码">
+    <input class="age" type="number" name="age" placeholder="年龄">
+</label>
+    <script>
+//        在上面的函数中，我们首先将天数转换为有效的日期，然后，我们将 cookie 名称、值及其过期日期存入 document.cookie 对象。
+        function setCookie(c_name,value,expiredays)
+        {
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate()+expiredays)
+            document.cookie=c_name+ "=" +escape(value)+
+                    ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+        }
+//，我们要创建另一个函数来检查是否已设置 cookie：
+        function getCookie(c_name){
+            if(document.cookie.length>0){
+                c_start = document.cookie.indexOf(c_name + "=")
+                if(c_start!=-1){
+                    c_start = c_start + c_name.length + 1
+                    c_end = document.cookie.indexOf(';',c_start);
+                    if(c_end == 1)
+                    c_end = document.cookie.length
+                    return unescape(document.cookie.substring(c_start,c_end))
+                }
+            }
+            return "";
+        }
+//最后，我们要创建一个函数，这个函数的作用是：如果 cookie 已设置，则显示欢迎词，否则显示提示框来要求用户输入名字。
+        function checkCookie()
+        {
+            username=getCookie('username')
+            if (username!=null && username!="")
+            {alert('Welcome again '+username+'!')}
+            else
+            {
+                username=prompt('Please enter your name:',"")
+                if (username!=null && username!="")
+                {
+                    setCookie('username',username,365)
+                }
+            }
+}
+            var name = document.getElementsByClassName('name');
+            var password = document.getElementsByClassName('password');
+            var age = document.getElementsByClassName('age');
+            setCookie(name,1,10);
+            getCookie(name);
+
+            checkCookie();
+            setCookie(password,1,10);
+            getCookie(password);
+            setCookie(age,1,10);
+            getCookie(age);
+    </script>
+</body>
+</html>

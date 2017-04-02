@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<script>
+    // GET
+    var request = new XMLHttpRequest();
+    request.open('GET', 'user.php?fname=Bill&lname=Gates', true); // false（同步）
+    request.send();
+
+    // ie8
+    request.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            if (this.status >= 200 && this.status < 400) {
+                // Success!
+                var data = JSON.parse(this.responseText);
+            } else {
+                // 错误
+            }
+        }
+    };
+
+    // ie9+
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            // Success!
+            var data = JSON.parse(request.responseText);
+        } else {
+            // 服务器返回出错
+        }
+    };
+    request.onerror = function() {
+        // 连接错误
+    };
+
+    // POST
+    var request = new XMLHttpRequest();
+    request.open('POST', 'user.php', true); // false（同步）
+    request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    request.send(dataString);
+</script>
+</body>
+</html>

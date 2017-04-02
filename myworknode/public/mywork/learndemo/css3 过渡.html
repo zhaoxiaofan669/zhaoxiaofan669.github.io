@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3 过渡</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            float: left;
+            margin:4rem;
+            font-size:4rem;
+        }
+        #div1{
+            transition: width 1s linear 2s;
+            /* Firefox 4 */
+            -moz-transition:width 1s linear 2s;
+            /* Safari and Chrome */
+            -webkit-transition:width 1s linear 2s;
+            /* Opera */
+            -o-transition:width 1s linear 2s;
+        }
+        #div1:hover{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>css3 过渡</legend>
+        <p>
+            通过 CSS3，我们可以在不使用 Flash 动画或 JavaScript 的情况下，当元素从一种样式变换为另一种样式时为元素添加效果。
+            请把鼠标移动到下面的元素上：
+        </p>
+        <em>
+            注释：Internet Explorer 9 以及更早的版本，不支持 transition 属性。
+            注释：Chrome 25 以及更早的版本，需要前缀 -webkit
+        </em>
+     </fieldset>
+    <div id="div1">rotate</div>
+
+</body>
+</html>

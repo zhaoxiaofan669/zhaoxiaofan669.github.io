@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3 3D转换</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            float: left;
+            margin:4rem;
+            font-size:4rem;
+        }
+        #div1{
+            transform: rotateX(120deg);
+            -webkit-transform: rotateX(120deg);	/* Safari 和 Chrome */
+            -moz-transform: rotateX(120deg);	/* Firefox */
+        }
+        #div2{
+            transform: rotateY(130deg);
+            -webkit-transform: rotateY(130deg);	/* Safari 和 Chrome */
+            -moz-transform: rotateY(130deg);	/* Firefox */
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>css3 3D转换</legend>
+        <p>
+            rotateX()
+            rotateY()
+        </p>
+        <em>
+            nternet Explorer 10 和 Firefox 支持 3D 转换。
+            Chrome 和 Safari 需要前缀 -webkit-。
+            Opera 仍然不支持 3D 转换（它只支持 2D 转换）。
+        </em>
+     </fieldset>
+    <div id="div1">rotate</div>
+    <div id="div2">rotate</div>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        #lbt>div{
+            width: 200px;
+            height: 200px;
+            border: 2px solid yellowgreen;
+            display: none;
+            background-color: #7cc4e7;
+        }
+        a{
+            line-height: 3;
+            padding: 10px;
+            border:1px dashed palevioletred;
+        }
+        span{
+            border:1px solid brown;
+        }
+        .active{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+        <div  id="lbt">
+            <span class="span">&it;左</span>
+            <a class=" active" href="javascript:void(0);">1</a>
+            <a  href="javascript:void(0);">2</a>
+            <a  href="javascript:void(0);">3</a>
+            <a  href="javascript:void(0);">4</a>
+            <a  href="javascript:void(0);">5</a>
+            <a  href="javascript:void(0);">6</a>
+            <span class="span">&gt;右</span>
+
+
+            <div class="div" style="display: block">111</div>
+            <div class="div">222</div>
+            <div class="div">333</div>
+            <div class="div">444</div>
+            <div class="div">555</div>
+
+        </div>
+        <script src="js/jquery-1.7.2.min.js"></script>
+        <script>
+            var lbt = document.getElementById('#lbt');
+            var divs = document.getElementsByClassName("div");
+            var as = document.getElementsByTagName("a");
+            var spans = document.getElementsByClassName("span");
+            var spanIndex = 0;
+            /************** 定时器部分 ***************/
+//这个时候需要让它动起来,那么就是定时器
+            var timer = null;
+            clearInterval(timer);
+            timer = setInterval(moveRight,1000);
+            spans[1].onclick = moveRight;
+            //定时器的作用是一个固定事件调用一个函数,
+           // 这个函数就是向右
+            function moveRight(){
+                spanIndex++;
+                if (spanIndex == divs.length) {
+                    spanIndex = 0;
+                }
+                for (var i = 0; i < divs.length; i++){
+                    divs[i].style.display = "none";
+                    as[i].className = "";
+                }
+                divs[spanIndex].style.display="block";
+                as[spanIndex].className = "active";
+            }
+
+            //附加功能:鼠标移入到轮播图中的div区域的时候就
+            //停止定时器,移出时就打开定时器
+            for(var j = 0;j<divs.length;j++){
+                divs[j].onmouseover = function(){
+                    clearInterval(timer);
+                };
+                divs[j].onmouseout = function(){
+                    clearInterval(timer);
+                    timer = setInterval(moveRight,1000);
+                }
+            }
+            /*****************************************/
+            //左
+            spans[0].onclick = function () {
+                spanIndex--;
+                if (spanIndex == -1) {
+                    spanIndex = divs.length - 1;
+                }
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].style.display = "none";
+                    as[i].className = "";
+                }
+                divs[spanIndex].style.display = "block";
+                as[spanIndex].className = "active";
+            };
+
+            for (var i = 0; i < as.length; i++) {
+                as[i].setAttribute("索引值", i);
+                as[i].onclick = function () {
+                    for (var i = 0; i < as.length; i++) {
+                        as[i].className = "";
+                        divs[i].style.display = "none";
+                    }
+                    this.className = "active";
+                    divs[this.getAttribute("索引值")].style.display = "block";
+                    spanIndex = this.getAttribute("索引值");
+                }
+            }
+        </script>
+</body>
+</html>

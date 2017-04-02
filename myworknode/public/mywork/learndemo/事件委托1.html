@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+       .clearFloat:after{
+           display: block;
+           clear:both;
+           content:'';
+           visibility:hidden;
+           height: 0;
+       }
+        .clearFloat{
+            zoom:1;
+        }
+        #fuji>div{
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="fuji" class="clearFloat">
+        <div id="oneDiv" class="erzi"></div>
+        <div class="erzi"></div>
+        <div class="erzi"></div>
+        <div class="erzi"></div>
+        <div class="erzi"></div>
+    </div>
+   <script src="js/jquery-1.7.2.min.js"> </script>
+    <script>
+//        for循环
+        var fuji = $('#fuji').get(0);
+//        var divs = fuji.getElementsByTagName('div');
+//        for(var i = 0;i < divs.length;i++){
+//            divs[i].onclick = function(){
+//                this.style.backgroundColor = 'red';
+//            }
+//        }
+
+//这样我们就可以做到每一个子级div上面添加鼠标事件。但如果我们有很多个div用for循环的话，就比较影响性能。
+//        委托事件
+        fuji.onclick = function(){
+            var ev = e||event;
+            /*获取事件源*/
+            var ziTarget = ev.target||ev.srcElement;
+            if(ziTarget.className = "erzi"){
+                ziTarget.style.backgroundColor = "red";
+            }
+         }
+
+
+    </script>
+</body>
+</html>

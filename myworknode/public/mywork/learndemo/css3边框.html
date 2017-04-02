@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css3边框</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            margin: 1.5rem;
+        }
+        #div{
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 20px;
+            background: rgb(234, 225, 122);
+        }
+        #div1{
+            background: rgb(255, 52, 29);
+            /*box-shadow:10px 10px 1px 1px #888888 inset;*/
+            box-shadow:10px 10px 2px #ffd16c;
+
+
+        }
+        #div2{
+            background: rgba(234, 63, 189, 1);
+            border-image:url(images/lvxing@2x.png) 12 12 round;
+            -moz-border-image:url(images/lvxing@2x.png) 12 12 round; /* 老的 Firefox */
+            -webkit-border-image:url(images/lvxing@2x.png) 12 12 round; /* Safari 和 Chrome */
+            -o-border-image:url(images/lvxing@2x.png) 10 10 round; /* Opera */
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>css3边框</legend>
+        <p>
+            通过 CSS3，您能够创建圆角边框，向矩形添加阴影，
+            使用图片来绘制边框 - 并且不需使用设计软件，比如 PhotoShop。
+        </p>
+        <em>
+            Internet Explorer 9+ 支持 border-radius 和 box-shadow 属性。
+            Firefox、Chrome 以及 Safari 支持所有新的边框属性。
+            注释：对于 border-image，Safari 5 以及更老的版本需要前缀 -webkit-。
+            Opera 支持 border-radius 和 box-shadow 属性，但是对于 border-image 需要前缀 -o-。
+        </em>
+     </fieldset>
+    <div id="div"></div>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>
