@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>绝对定位与负边距实现</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+       .center{
+           width: 200px;
+           height: 200px;
+           background: #b2ff72;
+           position:absolute;
+           top:50%;
+           left: 50%;
+           margin-top: -100px;
+           margin-left: -100px;
+       }
+    </style>
+</head>
+<body>
+<div class="center">
+        <p>我是多行文字</p>
+        <p>我是多行文字</p>
+        <p>我是多行文字</p>
+</div>
+</body>
+</html>
