@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <title></title>
+    <script src="vue.min.js"></script>
+    <script type="text/javascript">
+         window.onload = function(){
+             new Vue({
+                 el:'#box',
+                 data:{
+                     msg:'welcome vue',
+                     msg1:12,
+                     msg2:true,
+                 }
+             });
+         }
+    </script>
 </head>
 <body>
-    vue
+    <div id="box">
+        <input type="text" v-model="msg">
+        <input type="text" v-model="msg">
+        <br>
+        {{msg}}
+        <br>
+        {{msg1}}
+        <br>
+        {{msg2}}
+    </div>
 </body>
 </html>

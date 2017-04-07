@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./learndemo/js/jquery-1.7.2.min.js"></script>
+    <title>4</title>
+</head>
+<body>
+    <div class="panel">jQuery链式语法演示</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $('<input type="button" value="1"/><input type="button" value="2"/><input type="button" value="shanchu"/><input type="button" value="隐藏或显示"/>').appendTo($('body'));
+        $('input[type="button"]').eq(0).click(function(){
+            alert('第一个按钮');
+        }).end().eq(1).click(function(){
+            $('input[type="button"]:eq(0)').trigger('click');
+        }).end().eq(2).click(function(){
+            $('input[type="buttton"]:eq(0)').unbind('click');
+        }).end().eq(3).toggle(function(){
+            $('.panel').hide('slow');
+        },function(){
+            $('.panel').show('slow');
+        });
+    })
+
+</script>
