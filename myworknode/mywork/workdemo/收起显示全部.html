@@ -29,8 +29,8 @@
         var text = box.innerHTML;
         var newBox = document.createElement("div");
         var btn = document.createElement("a");
-        newBox.innerHTML = text.substring(0,200);
-        btn.innerHTML = text.length > 200 ? "...显示全部" : "";
+        newBox.innerHTML = text.substring(0,20);
+        btn.innerHTML = text.length > 10 ? "...显示全部" : "";
         btn.href = "###";
         btn.onclick = function(){
             if (btn.innerHTML == "...显示全部"){
@@ -38,7 +38,7 @@
                 newBox.innerHTML = text;
             }else{
                 btn.innerHTML = "...显示全部";
-                newBox.innerHTML = text.substring(0,200);
+                newBox.innerHTML = text.substring(0,20);
             }
         }
         box.innerHTML = "";

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右侧滑</title>
+    <style>
+        a.active{
+            background: red;
+        }
+    </style>
+    <script src="../learndemo/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div  id="u-liveAI">
+    <a class="active">娱儿直播【安卓版】直播流程</a>
+    <a>娱儿直播【iOS版】直播流程</a>
+    <div id="biulive"></div>
+</div>
+<script>
+    $("#biulive").css({width:"230px",left:0,position:"absolute",height:"3px",background:"#cecfd2"})
+    $("#u-liveAI a").on("click",function(e){
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        $("#biulive").animate({left:$(this).position().left},300)
+    })
+</script>
+</body>
+</html>

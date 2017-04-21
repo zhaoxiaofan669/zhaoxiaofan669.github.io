@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jqeury选中文字</title>
+    <style>
+        .change.active{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="jqeury选中文字">
+    <div class="change"><span class="xiu">修改</span></div>
+    <div class="change  active"><span class="save">保存</span><span class="cancel">取消</span></div>
+
+    <script src="../learndemo/js/jquery-1.7.2.min.js"></script>
+    <script>
+        $('.xiu').on('click',function(){
+            $('input[type=text]')[0].select();
+            $('.change').toggleClass('active');
+        })
+        $('.save').on('click',function(){
+            $('input').val('')
+        })
+    </script>
+</body>
+</html>
